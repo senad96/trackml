@@ -33,12 +33,12 @@ Step 1: Select runs on the runs table:
 
 <img style="border-radius: 8px; border: 1px solid #E8F1FC" alt="Runs Explorer Batch archive" src="https://docs-blobs.s3.us-east-2.amazonaws.com/images/ui/pages/runs-explorer/select_runs.png">
 
-Click on the `Archive` button. Fonfirmation popup appears. Click `Archive` again and the runs are archived!
+Click on the `Archive` button. Confirmation popup appears. Click `Archive` again and the runs are archived!
 
 <img style="border-radius: 8px; border: 1px solid #E8F1FC" alt="Runs Explorer Batch archive" src="https://docs-blobs.s3.us-east-2.amazonaws.com/images/ui/pages/runs-explorer/archive_runs_model.png">
 
 In order to batch delete the selected runs, just use the `Delete` button.
-In this case ase well, press `Delete` again on the confirmation popup and the runs will be hard deleted.
+In this case as well, press `Delete` again on the confirmation popup and the runs will be hard deleted.
 _**Warning:**_ this operation is irreversible and the runs are deleted from the disk.
 
 <img style="border-radius: 8px; border: 1px solid #E8F1FC" alt="Runs Explorer Batch delete" src="https://docs-blobs.s3.us-east-2.amazonaws.com/images/ui/pages/runs-explorer/delete_runs_model.png">
@@ -53,19 +53,23 @@ Generate Runs CSV report by clicking on the `Export` button on the Runs table.
 
 Each training run has a dedicated page on Aim. Use the single run page to observe all the tracked metadata associated with that run.
 
+<img style="border-radius: 8px; border: 1px solid #E8F1FC" alt="Single Run page params tab" src="https://docs-blobs.s3.us-east-2.amazonaws.com/images/ui/pages/run-single-page/single_run_page.png">
+
 Here are the tabs available on the single run page.
 Each tab visualizes respective tracked metadata or empty if not tracked.
 
+
 - [Overview](#id4)
 - [Params](#id5)
-- [Metrics](#id6)
-- [System](#id7)
-- [Distributions](#id8)
-- [Images](#id9)
-- [Audios](#id10)
-- [Texts](#id11)
-- [Figures](#id12)
-- [Settings](#id13)
+- [Notes](#id6)
+- [Metrics](#id7)
+- [System](#id8)
+- [Distributions](#id9)
+- [Images](#id10)
+- [Audios](#id11)
+- [Texts](#id12)
+- [Figures](#id13)
+- [Settings](#id14)
 
 ### Overview
 
@@ -86,6 +90,10 @@ Also, you can apply advanced `searching/filtering` to those card tables.
 Params tab contains a JSON-like visualization of all the tracked params data related to a single run of interest.
 
 <img style="border-radius: 8px; border: 1px solid #E8F1FC" alt="Single Run page params tab" src="https://docs-blobs.s3.us-east-2.amazonaws.com/images/ui/pages/run-single-page/params_tab.png">
+
+### Notes
+
+Notes Tab gives the ability to attach a note to the run. It’s a ==WYSIWYG== markdown editor with helpful functionalities. 
 
 ### Metrics
 
