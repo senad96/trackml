@@ -95,6 +95,8 @@ Params tab contains a JSON-like visualization of all the tracked params data rel
 
 Notes Tab gives the ability to attach a note to the run. It’s a ==WYSIWYG== markdown editor with helpful functionalities. 
 
+<img style="border-radius: 8px; border: 1px solid #E8F1FC" alt="Single Run page params tab" src="https://docs-blobs.s3.us-east-2.amazonaws.com/images/ui/pages/run-single-page/notes-tab.png">
+
 ### Metrics
 
 Metrics tab contains the visualizations of all the metrics tracked for the given run.
