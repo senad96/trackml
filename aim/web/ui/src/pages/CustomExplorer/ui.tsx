@@ -9,7 +9,12 @@ import {
 } from 'modules/BaseExplorer/components';
 import Controls from 'modules/BaseExplorer/components/Controls';
 
-import { AlignmentOptionsEnum } from 'utils/d3';
+import LineChart from 'components/LineChart/LineChart';
+import { HighlightEnum } from 'components/HighlightModesPopover/HighlightModesPopover';
+
+import COLORS from 'config/colors/colors';
+
+import { AlignmentOptionsEnum, CurveEnum, ScaleEnum } from 'utils/d3';
 import { filterMetricsData } from 'utils/filterMetricData';
 
 const ui: IUIConfig = {
@@ -25,63 +30,42 @@ const ui: IUIConfig = {
     visualizations: [Visualizer],
     grouping: Grouping,
     box: function CustomeMetricVisualizer(props: any) {
-      let data = props.data.data;
-      let element = React.useRef<HTMLIFrameElement>(null);
-
-      const { values, steps } = filterMetricsData(
-        data,
-        AlignmentOptionsEnum.STEP,
-      );
-
-      React.useEffect(() => {
-        if (element.current) {
-          let doc = element.current.contentWindow!.document;
-          doc.open();
-          doc.write(
-            `
-            <html>
-            <head>
-              <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
-              <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
-              <py-env>
-                - numpy
-                - matplotlib
-              </py-env>
-            </head>
-            <body>
-              <div id="plot"></div>
-              <py-script output="plot">
-                import matplotlib.pyplot as plt
-                import numpy as np
-          
-                x = np.random.randn(1000)
-                y = np.random.randn(1000)
-          
-                fig = plt.figure()
-                ax = fig.add_subplot(1, 1, 1)
-                ax.plot([${steps}], [${values}], color='tab:blue')
-                fig
-              </py-script>
-            </body>
-            </html>
-            `,
-          );
-          doc.close();
-        }
-      }, []);
+      let data = props.allItems.map((item: any, i: number) => {
+        let line = item.data;
+        const { values, steps } = filterMetricsData(
+          line,
+          AlignmentOptionsEnum.STEP,
+        );
+        return {
+          key: item.key,
+          data: {
+            xValues: steps,
+            yValues: values,
+          },
+          color: COLORS[0][i % COLORS[0].length],
+          dasharray: 'none',
+          selectors: [item.key],
+        };
+      });
 
       return (
         <div
           style={{
-            width: '100%',
+            width: 'calc(100% - 2px)',
             height: '100%',
             position: 'relative',
           }}
         >
-          <iframe
-            ref={element}
-            src='about:blank'
-            style={{ width: '100%', height: '100%', border: 'none' }}
+          <LineChart
+            data={data}
+            index={0}
+            axesScaleType={{
+              xAxis: ScaleEnum.Linear,
+              yAxis: ScaleEnum.Linear,
+            }}
+            ignoreOutliers={false}
+            highlightMode={HighlightEnum.Off}
+            curveInterpolation={CurveEnum.Linear}
           />
         </div>
       );

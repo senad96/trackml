@@ -108,6 +108,7 @@ function BoxWrapper(props: IBoxWrapperProps<AimFlatObjectBase<any>>) {
       <div className='BoxWrapper__box'>
         {BoxContent && (
           <BoxContent
+            allItems={items}
             data={currentItem}
             engine={engine}
             style={currentItem.style}
@@ -135,7 +136,13 @@ function BoxWrapper(props: IBoxWrapperProps<AimFlatObjectBase<any>>) {
         >
           <div className='BoxWrapper__fullViewContent'>
             <div className='BoxWrapper__fullViewContent__box'>
-              {BoxContent && <BoxContent data={currentItem} engine={engine} />}
+              {BoxContent && (
+                <BoxContent
+                  allItems={items}
+                  data={currentItem}
+                  engine={engine}
+                />
+              )}
             </div>
           </div>
           {renderDepthSlider({

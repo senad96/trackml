@@ -104,6 +104,7 @@ export interface IVisualizationProps extends IBaseComponentProps {
 export interface IProgressBarProps extends IBaseComponentProps {}
 
 export interface IBoxProps extends IBaseComponentProps {
+  allItems: any[];
   data: any;
   style?: React.CSSProperties;
 }
