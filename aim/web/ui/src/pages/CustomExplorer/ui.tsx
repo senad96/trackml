@@ -16,6 +16,7 @@ import COLORS from 'config/colors/colors';
 
 import { AlignmentOptionsEnum, CurveEnum, ScaleEnum } from 'utils/d3';
 import { filterMetricsData } from 'utils/filterMetricData';
+import { encode } from 'utils/encoder/encoder';
 
 const ui: IUIConfig = {
   defaultBoxConfig: {
@@ -36,15 +37,19 @@ const ui: IUIConfig = {
           line,
           AlignmentOptionsEnum.STEP,
         );
-        return {
+        let key = encode({
+          index: i,
           key: item.key,
+        });
+        return {
+          key: key,
           data: {
-            xValues: steps,
-            yValues: values,
+            xValues: [...steps],
+            yValues: [...values],
           },
           color: COLORS[0][i % COLORS[0].length],
           dasharray: 'none',
-          selectors: [item.key],
+          selectors: [key],
         };
       });
 
@@ -64,7 +69,7 @@ const ui: IUIConfig = {
               yAxis: ScaleEnum.Linear,
             }}
             ignoreOutliers={false}
-            highlightMode={HighlightEnum.Off}
+            highlightMode={HighlightEnum.Metric}
             curveInterpolation={CurveEnum.Linear}
           />
         </div>
